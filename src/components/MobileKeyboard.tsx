@@ -16,7 +16,7 @@ export default function MobileKeyboard() {
                   keyboardChar === '' ? 'pointer-events-none' : 'bg-white'
                 }`}
               >
-                {keyboardChar}
+                {keyboardChar + ''}
               </button>
             ))}
           </div>
