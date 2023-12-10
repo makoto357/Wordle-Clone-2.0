@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Guess from '@/components/Guess';
 import MobileKeyboard from '@/components/MobileKeyboard';
