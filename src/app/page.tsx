@@ -5,10 +5,12 @@ import Image from 'next/image';
 import { useGuesses } from '@/store/useGuesses';
 import Guess from '@/components/Guess';
 import MobileKeyboard from '@/components/MobileKeyboard';
+import words from '../../public/words.json';
+
+let answer = words[Math.floor(Math.random() * words.length)];
 
 export default function Home() {
   const { currGuess, guesses, incrCurrGuess, setGuesses } = useGuesses();
-
   const handleKeyup = (e: any) => {
     const char = e.currentTarget.textContent;
     console.log('XXX e', char);
