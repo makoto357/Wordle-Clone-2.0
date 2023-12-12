@@ -1,23 +1,13 @@
-import { useEffect } from 'react';
+interface MobileKeyboardProps {
+  handleKeyup: any;
+}
 
-export default function MobileKeyboard() {
+const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyup }) => {
   const keyboardKeys = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
     ['', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ''],
     ['Enter', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace']
   ];
-
-  const handleKeyup = (e: any) => {
-    const char = e.currentTarget.textContent;
-    console.log('XXX e', char);
-  };
-
-  useEffect(() => {
-    window.addEventListener('keyup', handleKeyup);
-    return () => {
-      window.removeEventListener('keyup', handleKeyup);
-    };
-  }, []);
 
   return (
     <div className="z-10 max-w-5xl w-full items-center justify-between text-sm lg:flex">
@@ -39,4 +29,6 @@ export default function MobileKeyboard() {
       </div>
     </div>
   );
-}
+};
+
+export default MobileKeyboard;
