@@ -42,7 +42,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-24 m-auto">
       <div>
         {guesses.map((_, index) => (
-          <Guess rowIndex={index} />
+          <Guess rowIndex={index} key={`guessRow_${index}`} />
         ))}
       </div>
       <div>
