@@ -1,8 +1,8 @@
 interface MobileKeyboardProps {
-  handleKeyup: any;
+  handleKeyDown: any;
 }
 
-const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyup }) => {
+const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyDown }) => {
   const keyboardKeys = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
     ['', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ''],
@@ -19,7 +19,7 @@ const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyup }) => {
                 className={`p-2 text-black font-bold uppercase flex-1 rounded ${
                   keyboardChar === '' ? 'pointer-events-none' : 'bg-white'
                 }`}
-                onClick={handleKeyup}
+                onClick={handleKeyDown}
               >
                 {keyboardChar}
               </button>

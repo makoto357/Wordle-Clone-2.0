@@ -11,27 +11,42 @@ let answer = words[Math.floor(Math.random() * words.length)];
 
 export default function Home() {
   const { currGuess, guesses, incrCurrGuess, setGuesses } = useGuesses();
-  const handleKeyup = (e: any) => {
-    const char = e.currentTarget.textContent;
-    console.log('XXX e', char);
+
+  const handleKeyDown = (e: any) => {
+    const char = e.currentTarget.textContent || e.key;
+
+    if (char === 'Backspace') {
+      guesses[currGuess] = guesses[currGuess].slice(
+        0,
+        guesses[currGuess].length - 1
+      );
+    }
+    if (char === 'Enter') {
+      if (currGuess < 6) {
+        incrCurrGuess();
+      }
+    }
+    if (guesses[currGuess].length < 5 && char.match(/^[A-z]$/)) {
+      setGuesses(char);
+    }
   };
 
   useEffect(() => {
-    window.addEventListener('keyup', handleKeyup);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keyup', handleKeyup);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [handleKeyDown]);
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24 m-auto">
       <div>
-        {new Array(6).fill(0).map((_, index) => (
-          <Guess />
+        {guesses.map((_, index) => (
+          <Guess rowIndex={index} />
         ))}
       </div>
       <div>
-        <MobileKeyboard handleKeyup={handleKeyup} />
+        <MobileKeyboard handleKeyDown={handleKeyDown} />
       </div>
     </main>
   );

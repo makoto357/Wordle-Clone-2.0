@@ -4,14 +4,18 @@ interface StoreState {
   currGuess: number;
   guesses: string[][];
   incrCurrGuess: () => void;
-  setGuesses: () => void;
+  setGuesses: (char: string) => void;
 }
 
 export const useGuesses = create<StoreState>((set) => {
   return {
     currGuess: 0,
-    guesses: [],
+    guesses: Array.from({ length: 6 }, () => []),
     incrCurrGuess: () => set((state) => ({ currGuess: state.currGuess + 1 })),
-    setGuesses: () => set((state) => ({ guesses: state.guesses }))
+    setGuesses: (char) =>
+      set((state) => {
+        state.guesses[state.currGuess].push(char);
+        return { guesses: state.guesses };
+      })
   };
 });
