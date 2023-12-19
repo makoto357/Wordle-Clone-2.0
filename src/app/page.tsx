@@ -1,12 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { useStore } from 'zustand';
 import Image from 'next/image';
-import { useGuesses } from '@/store/useGuesses';
+import { StoreContext } from '@/store/useCreateStore';
 import Guess from '@/components/Guess';
 import MobileKeyboard from '@/components/MobileKeyboard';
 
 export default function Home() {
+  const store = useContext(StoreContext);
+  if (!store) throw new Error('Missing CounterContext.Provider in the tree');
+
   const {
     answer,
     wordlist,
@@ -15,7 +19,7 @@ export default function Home() {
     incrCurrGuess,
     setGuesses,
     setCorrectlyGuessedChars
-  } = useGuesses();
+  } = useStore(store, (state) => state);
 
   const allGuesses = guesses.map((guess) => guess.join(''));
 
@@ -30,7 +34,11 @@ export default function Home() {
       return;
     }
     if (char === 'Enter') {
-      if (currGuess === 6) return;
+      if (
+        currGuess === 6 ||
+        (allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer)
+      )
+        return;
       if (guesses[currGuess].length < 5) {
         alert('Not enough letters, can you think of a 5-letter word?');
         return;

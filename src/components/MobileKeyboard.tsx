@@ -1,11 +1,19 @@
-import { useGuesses } from '@/store/useGuesses';
+import { useContext } from 'react';
+import { useStore } from 'zustand';
+import { StoreContext } from '../store/useCreateStore';
 
 interface MobileKeyboardProps {
   handleKeyDown: any;
 }
 
 const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyDown }) => {
-  const { answer, currGuess, guesses, correctlyGuessedChars } = useGuesses();
+  const store = useContext(StoreContext);
+  if (!store) throw new Error('Missing CounterContext.Provider in the tree');
+
+  const { answer, currGuess, guesses, correctlyGuessedChars } = useStore(
+    store,
+    (state) => state
+  );
 
   const keyboardKeys = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],

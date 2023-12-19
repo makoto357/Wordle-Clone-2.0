@@ -1,12 +1,17 @@
-import React from 'react';
-import { useGuesses } from '@/store/useGuesses';
+import React, { useContext } from 'react';
+import { useStore } from 'zustand';
+import { StoreContext } from '@/store/useCreateStore';
 
 interface GuessProps {
   rowIndex: number;
 }
 
 const Guess: React.FC<GuessProps> = ({ rowIndex }) => {
-  const { answer, currGuess, guesses } = useGuesses();
+  const store = useContext(StoreContext);
+  if (!store) throw new Error('Missing CounterContext.Provider in the tree');
+
+  const { answer, currGuess, guesses } = useStore(store, (state) => state);
+
   function charBgColor(rowIndex: number, charIndex: number, char: string) {
     const isGuessed = rowIndex < currGuess;
     if (!isGuessed) return;

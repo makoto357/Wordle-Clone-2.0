@@ -1,4 +1,5 @@
-import { create } from 'zustand';
+import { createContext } from 'react';
+import { createStore } from 'zustand';
 import words from '../../public/words.json';
 
 interface StoreState {
@@ -12,7 +13,7 @@ interface StoreState {
   setCorrectlyGuessedChars: (char: string[]) => void;
 }
 
-export const useGuesses = create<StoreState>((set) => {
+const useCreateStore = createStore<StoreState>((set) => {
   return {
     answer: words[Math.floor(Math.random() * words.length)],
     wordlist: words,
@@ -38,3 +39,15 @@ export const useGuesses = create<StoreState>((set) => {
       })
   };
 });
+
+const StoreContext = createContext<typeof useCreateStore | null>(null);
+
+function StoreContextProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <StoreContext.Provider value={useCreateStore}>
+      {children}
+    </StoreContext.Provider>
+  );
+}
+
+export { StoreContextProvider, StoreContext };
