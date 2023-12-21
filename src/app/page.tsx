@@ -20,6 +20,7 @@ export default function Home() {
     setGuesses,
     setCorrectlyGuessedChars
   } = useStore(store, (state) => state);
+  console.log('XXX ans', answer);
 
   const allGuesses = guesses.map((guess) => guess.join(''));
 
@@ -78,18 +79,18 @@ export default function Home() {
   }, [handleKeyDown]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 m-auto">
+    <main className="flex min-h-screen flex-col items-center p-6 m-auto">
       {allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer && (
-        <div className="mb-4 text-md whitespace-nowrap text-white font-semibold">
+        <div className="mb-4 text-md whitespace-nowrap text-black font-semibold">
           <h1>You won! The answer is {answer}.</h1>
         </div>
       )}
       {!allGuesses.includes(answer) && currGuess === 6 && (
-        <div className="mb-4 text-md whitespace-nowrap text-white font-semibold">
+        <div className="mb-4 text-md whitespace-nowrap text-black font-semibold">
           <h1>You lost! The answer is {answer}.</h1>
         </div>
       )}
-      <div>
+      <div className="mb-6">
         {guesses.map((_, index) => (
           <Guess rowIndex={index} key={`guessRow_${index}`} />
         ))}

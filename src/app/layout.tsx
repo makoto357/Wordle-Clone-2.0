@@ -1,8 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import '../globals.css';
 import { StoreContextProvider } from '@/store/useCreateStore';
+import websiteLogo from '../../public/wordle-logo.png';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,9 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="w-screen h-24 flex justify-center items-center">
-          <h1 className="text-6xl font-bold uppercase text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-green-400">
-            Wordle
-          </h1>
+          <Image src={websiteLogo} alt="website logo" width="300" priority />
         </div>
         <StoreContextProvider>{children}</StoreContextProvider>
       </body>

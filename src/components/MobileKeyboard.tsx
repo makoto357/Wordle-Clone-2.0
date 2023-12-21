@@ -28,11 +28,11 @@ const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyDown }) => {
     if (coloredKey.includes(key)) {
       if (answer.includes(key)) {
         if (correctlyGuessedChars.includes(key)) {
-          return 'bg-green-400';
+          return 'bg-macaron-red';
         }
-        return 'bg-yellow-400';
+        return 'bg-macaron-yellow';
       }
-      return 'bg-slate-400';
+      return 'bg-macaron-blue';
     }
     return 'bg-white';
   }
