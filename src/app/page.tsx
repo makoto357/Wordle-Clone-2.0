@@ -1,11 +1,12 @@
 'use client';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useStore } from 'zustand';
 import Image from 'next/image';
 import { StoreContext } from '@/store/useCreateStore';
 import Guess from '@/components/Guess';
 import MobileKeyboard from '@/components/MobileKeyboard';
+import GameStatusModal from '@/components/GameStatusModal';
 
 export default function Home() {
   const store = useContext(StoreContext);
@@ -18,11 +19,23 @@ export default function Home() {
     guesses,
     incrCurrGuess,
     setGuesses,
-    setCorrectlyGuessedChars
+    setCorrectlyGuessedChars,
+    resetGameStatus
   } = useStore(store, (state) => state);
-  console.log('XXX ans', answer);
 
+  const [isOpen, setIsOpen] = useState(false);
   const allGuesses = guesses.map((guess) => guess.join(''));
+  const win =
+    allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer;
+  const lose = !allGuesses.includes(answer) && currGuess === 6;
+  const displayedAnswer = answer.split('').map((a, index) => (
+    <div
+      className="flex items-center justify-center h-12 w-12 rounded-full border-gray-400 font-bold uppercase text-black bg-macaron-red"
+      key={`ansChar_${index}`}
+    >
+      {a}
+    </div>
+  ));
 
   const handleKeyDown = (e: any) => {
     const char = e.currentTarget.textContent || e.key;
@@ -72,6 +85,12 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (win || lose) {
+      setIsOpen(true);
+    }
+  }, [allGuesses, setIsOpen]);
+
+  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -80,16 +99,22 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-6 m-auto">
-      {allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer && (
-        <div className="mb-4 text-md whitespace-nowrap text-black font-semibold">
-          <h1>You won! The answer is {answer}.</h1>
-        </div>
-      )}
-      {!allGuesses.includes(answer) && currGuess === 6 && (
-        <div className="mb-4 text-md whitespace-nowrap text-black font-semibold">
-          <h1>You lost! The answer is {answer}.</h1>
-        </div>
-      )}
+      <GameStatusModal
+        isOpen={isOpen}
+        onClose={() => {
+          resetGameStatus();
+          setIsOpen(false);
+        }}
+        dialogTitle={win ? 'YOU WIN!' : 'YOU LOSE!'}
+        dialogDesc={
+          <>
+            <p className="mb-12">The answer is</p>
+            <div className="flex items-center justify-center gap-2 mb-12">
+              {displayedAnswer}
+            </div>
+          </>
+        }
+      />
       <div className="mb-6">
         {guesses.map((_, index) => (
           <Guess rowIndex={index} key={`guessRow_${index}`} />

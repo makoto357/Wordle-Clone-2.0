@@ -11,6 +11,7 @@ interface StoreState {
   incrCurrGuess: () => void;
   setGuesses: (char: string, action: string) => void;
   setCorrectlyGuessedChars: (char: string[]) => void;
+  resetGameStatus: () => void;
 }
 
 const useCreateStore = createStore<StoreState>((set) => {
@@ -35,6 +36,16 @@ const useCreateStore = createStore<StoreState>((set) => {
         chars.map((char) => state.correctlyGuessedChars.push(char));
         return {
           correctlyGuessedChars: state.correctlyGuessedChars
+        };
+      }),
+    resetGameStatus: () =>
+      set(() => {
+        return {
+          answer: words[Math.floor(Math.random() * words.length)],
+          wordlist: words,
+          currGuess: 0,
+          guesses: Array.from({ length: 6 }, () => []),
+          correctlyGuessedChars: []
         };
       })
   };
