@@ -7,6 +7,8 @@ import { StoreContext } from '@/store/useCreateStore';
 import Guess from '@/components/Guess';
 import MobileKeyboard from '@/components/MobileKeyboard';
 import GameStatusModal from '@/components/GameStatusModal';
+import GameInstructionPopover from '@/components/GameInstructionPopover';
+import restartGame from '../../public/restart-game.png';
 
 export default function Home() {
   const store = useContext(StoreContext);
@@ -108,20 +110,31 @@ export default function Home() {
         dialogTitle={win ? 'YOU WIN!' : 'YOU LOSE!'}
         dialogDesc={
           <>
-            <p className="mb-12">The answer is</p>
+            <div className="mb-12">The answer is</div>
             <div className="flex items-center justify-center gap-2 mb-12">
               {displayedAnswer}
             </div>
           </>
         }
       />
-      <div className="mb-6">
-        {guesses.map((_, index) => (
-          <Guess rowIndex={index} key={`guessRow_${index}`} />
-        ))}
-      </div>
       <div>
-        <MobileKeyboard handleKeyDown={handleKeyDown} />
+        <div className="flex gap-2 mb-6 justify-end">
+          <button
+            className="bg-white p-1 rounded-full text-center outline-none"
+            onClick={resetGameStatus}
+          >
+            <Image src={restartGame} alt="play again" width="36" />
+          </button>
+          <GameInstructionPopover />
+        </div>
+        <div className="mb-6">
+          {guesses.map((_, index) => (
+            <Guess rowIndex={index} key={`guessRow_${index}`} />
+          ))}
+        </div>
+        <div>
+          <MobileKeyboard handleKeyDown={handleKeyDown} />
+        </div>
       </div>
     </main>
   );

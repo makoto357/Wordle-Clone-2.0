@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body suppressHydrationWarning={true} className={inter.className}>
         <div className="w-screen h-24 flex justify-center items-center">
           <Image src={websiteLogo} alt="website logo" width="300" priority />
         </div>
