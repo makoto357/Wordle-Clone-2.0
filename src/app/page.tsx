@@ -8,6 +8,7 @@ import Guess from '@/components/Guess';
 import MobileKeyboard from '@/components/MobileKeyboard';
 import GameStatusModal from '@/components/GameStatusModal';
 import GameInstructionPopover from '@/components/GameInstructionPopover';
+import InvalidGuessAlert from '@/components/InvalidGuessAlert';
 import restartGame from '../../public/restart-game.png';
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
   } = useStore(store, (state) => state);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [alert, setAlert] = useState({ isOpen: false, textContent: '' });
   const allGuesses = guesses.map((guess) => guess.join(''));
   const win =
     allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer;
@@ -56,11 +58,17 @@ export default function Home() {
       )
         return;
       if (guesses[currGuess].length < 5) {
-        alert('Not enough letters, can you think of a 5-letter word?');
+        setAlert({
+          isOpen: true,
+          textContent: 'Not enough letters, can you think of a 5-letter word?'
+        });
         return;
       }
       if (!wordlist.includes(guesses[currGuess].join(''))) {
-        alert('Not in word list, please choose another word:)');
+        setAlert({
+          isOpen: true,
+          textContent: 'Not in word list, please choose another word!'
+        });
         return;
       }
       if (guesses[currGuess].length === 5) {
@@ -93,6 +101,19 @@ export default function Home() {
   }, [allGuesses, setIsOpen]);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (alert.isOpen) {
+      timeoutId = setTimeout(
+        () => setAlert({ isOpen: false, textContent: '' }),
+        1500
+      );
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [alert, setAlert]);
+
+  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -100,7 +121,7 @@ export default function Home() {
   }, [handleKeyDown]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-6 m-auto">
+    <main className="flex min-h-screen flex-col items-center p-6 m-auto relative">
       <GameStatusModal
         isOpen={isOpen}
         onClose={() => {
@@ -117,6 +138,7 @@ export default function Home() {
           </>
         }
       />
+      {alert.isOpen && <InvalidGuessAlert textContent={alert.textContent} />}
       <div>
         <div className="flex gap-2 mb-6 justify-end">
           <button
