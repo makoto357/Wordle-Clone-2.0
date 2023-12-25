@@ -14,22 +14,22 @@ const Guess: React.FC<GuessProps> = ({ rowIndex }) => {
 
   function charBgColor(rowIndex: number, charIndex: number, char: string) {
     const isGuessed = rowIndex < currGuess;
-    if (!isGuessed) return;
+    if (!isGuessed) return 'bg-white';
     if (answer.includes(char)) {
       if (answer[charIndex] === char) {
-        return 'bg-green-400';
+        return 'bg-macaron-red';
       }
-      return 'bg-yellow-400';
+      return 'bg-macaron-yellow';
     }
-    return 'bg-black';
+    return 'bg-white';
   }
 
   return (
-    <div className="w-full items-center justify-between text-sm lg:flex">
+    <div className="w-full items-center justify-between text-lg lg:flex">
       <div className="grid grid-cols-5 gap-2 mb-2">
         {new Array(5).fill('0').map((_, index) => (
           <div
-            className={`h-16 w-16 border border-gray-400 font-bold uppercase text-white flex items-center justify-center 
+            className={`h-16 w-16 rounded-full border-gray-400 font-bold uppercase text-black flex items-center justify-center 
             ${charBgColor(rowIndex, index, guesses[rowIndex][index])}
             `}
             key={`guessChar_${index}`}

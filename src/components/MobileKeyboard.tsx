@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { useStore } from 'zustand';
 import { StoreContext } from '../store/useCreateStore';
+import Image from 'next/image';
+import backSpace from '../../public/backspace.png';
 
 interface MobileKeyboardProps {
   handleKeyDown: any;
@@ -28,11 +30,11 @@ const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyDown }) => {
     if (coloredKey.includes(key)) {
       if (answer.includes(key)) {
         if (correctlyGuessedChars.includes(key)) {
-          return 'bg-green-400';
+          return 'bg-macaron-red';
         }
-        return 'bg-yellow-400';
+        return 'bg-macaron-yellow';
       }
-      return 'bg-slate-400';
+      return 'bg-macaron-blue';
     }
     return 'bg-white';
   }
@@ -47,13 +49,26 @@ const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyDown }) => {
           >
             {keyboardRow.map((keyboardChar, index) => (
               <button
-                className={`p-2 text-black font-bold uppercase flex-1 rounded ${
-                  keyboardChar === '' && 'pointer-events-none'
-                } ${keyBgColor(keyboardChar)}`}
-                onClick={handleKeyDown}
                 key={`${keyboardChar}${index}`}
+                onClick={handleKeyDown}
+                className={`font-bold uppercase flex-1 rounded
+                ${keyBgColor(keyboardChar)}
+                ${keyboardChar === '' && 'outline-none pointer-events-none'} 
+                ${
+                  keyboardChar === 'Backspace'
+                    ? 'text-transparent text-xs'
+                    : 'p-2 text-black'
+                }
+                `}
               >
-                {keyboardChar}
+                <div className="relative">
+                  {keyboardChar}
+                  {keyboardChar === 'Backspace' && (
+                    <div className="absolute -top-2 right-6">
+                      <Image src={backSpace} alt="Backspace" width="34" />
+                    </div>
+                  )}
+                </div>
               </button>
             ))}
           </div>
