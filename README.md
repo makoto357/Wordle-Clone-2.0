@@ -17,31 +17,31 @@
 
 ### Built With
 
-* ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-* ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-* ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-* ![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
-* ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
-* ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) (EC2 for deploying the website)
-* [zustand](https://github.com/pmndrs/zustand) for state management of the app.
-* [Headless UI](https://headlessui.com/) for integrating UI components with Tailwind CSS.
-* [Husky pre-commit hooks](https://typicode.github.io/husky/getting-started.html) for improving code quality.
+- ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+- ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+- ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+- ![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
+- ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+- ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) (EC2 for deploying the website)
+- [zustand](https://github.com/pmndrs/zustand) for state management of the app.
+- [Headless UI](https://headlessui.com/) for integrating UI components with Tailwind CSS.
+- [Husky pre-commit hooks](https://typicode.github.io/husky/getting-started.html) for improving code quality.
 
 ## Feature
-* A refreshing color palette to bring a different vibe to this classic game (with a built-in mobile keyboard)! 
-<img width="300" alt="color palette" src="../media/src/images/wordle-color-palette.png?raw=true" />
-* Dialog boxes to inform players of the game status.
-<img width="300" alt="dialog boxes" src="../media/src/images/wordle-dialog.png?raw=true" />
-* Popovers for players to either reset the game or read the instructions 
-<img width="300" alt="popovers" src="../media/src/images/wordle-popover.png?raw=true" />
-* Alerts to remind players of invalid guesses.
-<img width="300" alt="alerts" src="../media/src/images/wordle-alert.png?raw=true" />
-* This web app was originally deployed using AWS EC2.<br/>
+
+- A refreshing color palette to bring a different vibe to this classic game (with a built-in mobile keyboard)!
+  <img width="300" alt="color palette" src="../media/src/images/wordle-color-palette.png?raw=true" />
+- Dialog boxes to inform players of the game status.
+  <img width="300" alt="dialog boxes" src="../media/src/images/wordle-dialog.png?raw=true" />
+- Popovers for players to either reset the game or read the instructions
+  <img width="300" alt="popovers" src="../media/src/images/wordle-popover.png?raw=true" />
+- Alerts to remind players of invalid guesses.
+  <img width="300" alt="alerts" src="../media/src/images/wordle-alert.png?raw=true" />
+- This web app was originally deployed using AWS EC2.<br/>
+
 1. EC2 instance:
-<img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-instance.png?raw=true" / >
+   <img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-instance.png?raw=true" / >
 2. EC2 client:
-<img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-client.png?raw=true" / >
+   <img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-client.png?raw=true" / >
 3. Browser:
-<img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-browser.png?raw=true" / >
-
-
+   <img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-browser.png?raw=true" / >
