@@ -29,19 +29,19 @@
 
 ## Feature
 
-- A refreshing color palette to bring a different vibe to this classic game (with a built-in mobile keyboard)!
+- A refreshing color palette to bring a different vibe to this classic game (with a built-in mobile keyboard)!<br> 
   <img width="300" alt="color palette" src="../media/src/images/wordle-color-palette.png?raw=true" />
-- Dialog boxes to inform players of the game status.
-  <img width="300" alt="dialog boxes" src="../media/src/images/wordle-dialog.png?raw=true" />
-- Popovers for players to either reset the game or read the instructions
-  <img width="300" alt="popovers" src="../media/src/images/wordle-popover.png?raw=true" />
-- Alerts to remind players of invalid guesses.
-  <img width="300" alt="alerts" src="../media/src/images/wordle-alert.png?raw=true" />
-- This web app was originally deployed using AWS EC2.<br/>
+- Dialog boxes to inform players of the game status.<br>
+  <img width="300" alt="dialog boxes" src="../media/src/images/wordle-dialog.png?raw=true">
+- Popovers for players to either reset the game or read the instructions.<br>
+  <img width="300" alt="popovers" src="../media/src/images/wordle-popover.png?raw=true">
+- Alerts to remind players of invalid guesses.<br>
+  <img width="300" alt="alerts" src="../media/src/images/wordle-alert.png?raw=true">
+- This web app was originally deployed using AWS EC2:<br>
 
-1. EC2 instance:
-   <img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-instance.png?raw=true" / >
-2. EC2 client:
-   <img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-client.png?raw=true" / >
-3. Browser:
-   <img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-browser.png?raw=true" / >
+1. EC2 instance:<br>
+   <img width="500" alt="ec2 instance" src="../media/src/images/wordle-ec2-instance.png?raw=true">
+2. EC2 client:<br>
+   <img width="500" alt="ec2 instance" src="../media/src/images/wordle-ec2-client.png?raw=true">
+3. Browser:<br>
+   <img width="500" alt="ec2 instance" src="../media/src/images/wordle-ec2-browser.png?raw=true">
