@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="../media/src/images/vrm-mocap-high-resolution-logo.png?raw=true" alt="Logo" width="120">
+  <a href="https://github.com/makoto357/wordle-clone">
+    <img src="../media/src/images/wordle-logo.png?raw=true" alt="Logo" width="120">
   </a>
 
 <h3 align="center">Wordle Clone 2.0</h3>
@@ -10,7 +10,7 @@
   <p align="center">
     A Worldle clone with a refreshing color scheme, built using Next.js, Zustand, and Storybook.
     <br />
-    <a href="https://wordle-2-makoto357.vercel.app/"><strong>Website URL »</strong></a>
+    <a href="https://wordle-2-makoto357.vercel.app/" target="_blank"><strong>Website URL »</strong></a>
     <br />
   </p>
 </div>
@@ -29,12 +29,19 @@
 
 ## Feature
 * A refreshing color palette to bring a different vibe to this classic game (with a built-in mobile keyboard)! 
-<img width="1280" alt="loading-screen" src="../media/src/images/VRMmocap-loading-screen.png?raw=true">
+<img width="300" alt="color palette" src="../media/src/images/wordle-color-palette.png?raw=true" />
 * Dialog boxes to inform players of the game status.
-<img width="1280" alt="loading-screen" src="../media/src/images/VRMmocap-loading-screen.png?raw=true">
+<img width="300" alt="dialog boxes" src="../media/src/images/wordle-dialog.png?raw=true" />
 * Popovers for players to either reset the game or read the instructions 
-<img width="1280" alt="loading-screen" src="../media/src/images/VRMmocap-avatar1.png?raw=true">
+<img width="300" alt="popovers" src="../media/src/images/wordle-popover.png?raw=true" />
 * Alerts to remind players of invalid guesses.
-<img width="1280" alt="loading-screen" src="../media/src/images/VRMmocap-avatar2.png?raw=true">
-* This web app was originally deployed using AWS EC2.
-<img height="400" alt="loading-screen" src="../media/src/images/VRMmocap-info-panel.png?raw=true">
+<img width="300" alt="alerts" src="../media/src/images/wordle-alert.png?raw=true" />
+* This web app was originally deployed using AWS EC2.<br/>
+1. EC2 instance:
+<img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-instance.png?raw=true" / >
+2. EC2 client:
+<img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-client.png?raw=true" / >
+3. Browser:
+<img height="300" alt="ec2 instance" src="../media/src/images/wordle-ec2-browser.png?raw=true" / >
+
+
