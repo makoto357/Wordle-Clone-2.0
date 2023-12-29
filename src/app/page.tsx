@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { useStore } from 'zustand';
 import Image from 'next/image';
 import { StoreContext } from '@/store/useCreateStore';
@@ -28,6 +28,7 @@ export default function Home() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [alert, setAlert] = useState({ isOpen: false, textContent: '' });
+  const resetButtonRef = useRef<HTMLButtonElement>(null);
   const allGuesses = guesses.map((guess) => guess.join(''));
   const win =
     allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer;
@@ -42,6 +43,7 @@ export default function Home() {
   ));
 
   const handleKeyDown = (e: any) => {
+    e.target.blur();
     const char = e.currentTarget.textContent || e.key;
     if (char === 'Backspace') {
       guesses[currGuess] = guesses[currGuess].slice(
@@ -142,8 +144,12 @@ export default function Home() {
       <div>
         <div className="flex gap-2 mb-6 justify-end">
           <button
+            ref={resetButtonRef}
             className="bg-white p-1 rounded-full text-center outline-none"
-            onClick={resetGameStatus}
+            onClick={() => {
+              resetGameStatus();
+              resetButtonRef.current?.blur();
+            }}
           >
             <Image src={restartGame} alt="play again" width="36" />
           </button>
