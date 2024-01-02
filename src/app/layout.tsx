@@ -1,10 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import '../globals.css';
 import { StoreContextProvider } from '@/store/useCreateStore';
-import websiteLogo from '../../public/wordle-logo.png';
-
 export default function RootLayout({
   children
 }: {
@@ -13,9 +10,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <div className="w-screen h-24 flex justify-center items-center">
-          <Image src={websiteLogo} alt="website logo" width="300" priority />
-        </div>
         <StoreContextProvider>{children}</StoreContextProvider>
       </body>
     </html>
