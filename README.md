@@ -30,7 +30,9 @@
 ## Feature
 
 - A refreshing color palette to bring a different vibe to this classic game (with a built-in mobile keyboard)!<br> 
-  <img width="300" alt="color palette" src="../media/src/images/wordle-color-palette.png?raw=true" />
+  <img width="500" alt="color palette" src="../media/src/images/wordle-color-palette.png?raw=true" />
+- RWD for the mobile version.<br> 
+  <img width="300" alt="color palette" src="../media/src/images/wordle-color-palette-mobile.png?raw=true" />
 - Dialog boxes to inform players of the game status.<br>
   <img width="300" alt="dialog boxes" src="../media/src/images/wordle-dialog.png?raw=true">
 - Popovers for players to either reset the game or read the instructions.<br>
@@ -41,7 +43,7 @@
 
 1. EC2 instance:<br>
    <img width="500" alt="ec2 instance" src="../media/src/images/wordle-ec2-instance.png?raw=true">
-2. EC2 client:<br>
+2. EC2 client (run with PM2):<br>
    <img width="500" alt="ec2 instance" src="../media/src/images/wordle-ec2-client.png?raw=true">
 3. Browser:<br>
    <img width="500" alt="ec2 instance" src="../media/src/images/wordle-ec2-browser.png?raw=true">
