@@ -57,7 +57,7 @@ const MobileKeyboard: React.FC<MobileKeyboardProps> = ({ handleKeyDown }) => {
                 ${
                   keyboardChar === 'Backspace'
                     ? 'text-transparent text-xs'
-                    : 'p-2 text-black'
+                    : 'p-1 sm:p-2 text-black'
                 }
                 `}
               >

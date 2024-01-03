@@ -25,11 +25,11 @@ const Guess: React.FC<GuessProps> = ({ rowIndex }) => {
   }
 
   return (
-    <div className="w-full items-center justify-between text-lg lg:flex">
+    <div className="w-[300px] sm:w-full items-center justify-between text-lg lg:flex m-auto">
       <div className="grid grid-cols-5 gap-2 mb-2">
         {new Array(5).fill('0').map((_, index) => (
           <div
-            className={`h-16 w-16 rounded-full border-gray-400 font-bold uppercase text-black flex items-center justify-center 
+            className={`h-12 w-12 sm:h-16 sm:w-16 rounded-full border-gray-400 font-bold uppercase text-black flex items-center justify-center 
             ${charBgColor(rowIndex, index, guesses[rowIndex][index])}
             `}
             key={`guessChar_${index}`}

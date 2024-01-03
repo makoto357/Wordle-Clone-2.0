@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { useStore } from 'zustand';
 import Image from 'next/image';
 import { StoreContext } from '@/store/useCreateStore';
@@ -10,6 +10,7 @@ import GameStatusModal from '@/components/GameStatusModal';
 import GameInstructionPopover from '@/components/GameInstructionPopover';
 import InvalidGuessAlert from '@/components/InvalidGuessAlert';
 import restartGame from '../../public/restart-game.png';
+import websiteLogo from '../../public/wordle-logo.png';
 
 export default function Home() {
   const store = useContext(StoreContext);
@@ -28,6 +29,7 @@ export default function Home() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [alert, setAlert] = useState({ isOpen: false, textContent: '' });
+  const resetButtonRef = useRef<HTMLButtonElement>(null);
   const allGuesses = guesses.map((guess) => guess.join(''));
   const win =
     allGuesses.includes(answer) && allGuesses[currGuess - 1] === answer;
@@ -42,6 +44,7 @@ export default function Home() {
   ));
 
   const handleKeyDown = (e: any) => {
+    e.target.blur();
     const char = e.currentTarget.textContent || e.key;
     if (char === 'Backspace') {
       guesses[currGuess] = guesses[currGuess].slice(
@@ -121,7 +124,7 @@ export default function Home() {
   }, [handleKeyDown]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-6 m-auto relative">
+    <main className="flex min-h-screen flex-col items-center p-6 pt-0 m-auto relative">
       <GameStatusModal
         isOpen={isOpen}
         onClose={() => {
@@ -139,16 +142,25 @@ export default function Home() {
         }
       />
       {alert.isOpen && <InvalidGuessAlert textContent={alert.textContent} />}
-      <div>
-        <div className="flex gap-2 mb-6 justify-end">
+      <header className="w-[300px] sm:w-[352px] sm:block flex items-center">
+        <div className="h-24 flex justify-center items-center">
+          <Image src={websiteLogo} alt="website logo" width="300" priority />
+        </div>
+        <div className="flex gap-2 ml-6 sm:mb-6 justify-end items-end sm:items-center">
           <button
-            className="bg-white p-1 rounded-full text-center outline-none"
-            onClick={resetGameStatus}
+            ref={resetButtonRef}
+            className="bg-white p-1 rounded-full text-center outline-none sm:h-full"
+            onClick={() => {
+              resetGameStatus();
+              resetButtonRef.current?.blur();
+            }}
           >
             <Image src={restartGame} alt="play again" width="36" />
           </button>
           <GameInstructionPopover />
         </div>
+      </header>
+      <div>
         <div className="mb-6">
           {guesses.map((_, index) => (
             <Guess rowIndex={index} key={`guessRow_${index}`} />
